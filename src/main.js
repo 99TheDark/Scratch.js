@@ -25,26 +25,30 @@ Array.prototype.remove = function(item) {
 var GameData = {
     listeners: {
         flag: [],
-        forever: [],
-        keypress: []
+        broadcast: [],
+        forever: []
     },
     images: [],
     sprites: [],
     loaded: function() {
         if(this.images.length == 0) {
-            this.listeners.flag.forEach(func => func());
+            this.listeners.flag.forEach(listener => listener.run());
             this.run();
         }
     },
     run: function() {
-        const ctx = this.context;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if(!this.stopped) {
+            const ctx = this.context;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        this.listeners.forever.forEach(body => body());
+            this.listeners.forever.forEach(body => body());
+            this.sprites.forEach(sprite => sprite.__draw(ctx));
 
-        this.sprites.forEach(sprite => sprite.__draw(ctx));
-
-        requestAnimationFrame(() => this.run.call(this));
+            requestAnimationFrame(() => this.run.call(this));
+        }
+    },
+    stop: function() {
+        this.stopped = true;
     },
     angle: deg => deg * Math.PI / 180,
     rectRect: (rect1, rect2) => {
@@ -53,7 +57,8 @@ var GameData = {
     context: canvas.getContext("2d"),
     width: 480,
     height: 360,
-    res: 4
+    res: 4,
+    stopped: false
 };
 
 [GameData.top, GameData.bottom, GameData.left, GameData.right] = [GameData.height / 2, -GameData.height / 2, - GameData.width / 2, GameData.width / 2];

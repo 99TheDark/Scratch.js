@@ -7,12 +7,16 @@ var ball = new Sprite({
     ]
 });
 
-ball.on("flag", function() {
+ball.flagClicked(function() {
     this.pointInDirection(pickRandom(-70, 70));
     forever(() => {
         this.move(4);
+        if(this.y < -152) {
+            broadcast("Game Over");
+            this.stop("all");
+        }
         this.ifOnEdgeBounce();
-        if(this.touching(paddle)) {
+        if(this.touching(paddle) && this.y > -105) {
             this.pointInDirection(180 - this.direction);
         }
     });

@@ -9,6 +9,12 @@ function repeat(times, body) {
     }
 };
 
+function broadcast(message) {
+    GameData.listeners.broadcast.forEach(listener => {
+        if(listener.message == message) listener.run();
+    });
+};
+
 // Sensing
 var mouseX = 0;
 var mouseY = 0;

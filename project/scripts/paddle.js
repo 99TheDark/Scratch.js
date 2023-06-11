@@ -5,7 +5,7 @@ export var paddle = new Sprite({
     ]
 });
 
-paddle.on("flag", function() {
+paddle.flagClicked(function() {
     forever(() => {
         this.setX(mouseX);
     });

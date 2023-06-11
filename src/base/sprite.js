@@ -8,6 +8,7 @@ class Sprite {
         costumes: [],
         costumeNumber: 0
     };
+    #scripts = [];
 
     constructor(data) {
         for(const key in data) {
@@ -19,10 +20,30 @@ class Sprite {
         GameData.sprites.push(this);
     }
 
-    on(listener, body) {
-        switch(listener) {
-            case "flag":
-                body.call(this);
+    // Events
+    flagClicked(body) {
+        this.#scripts.push(body);
+        GameData.listeners.flag.push(new Listener(this, body));
+    }
+    received(message, body) {
+        this.#scripts.push(body);
+        GameData.listeners.broadcast.push(new Listener(this, body, message));
+    }
+
+    // Control
+    stop(which) {
+        switch(which) {
+            default:
+                console.warn(`'${which}' is not a valid option; only 'all', 'this' and others' are available.`);
+                break;
+            case "all":
+                GameData.stop();
+                break;
+            case "this":
+                // TODO
+                break;
+            case "others":
+                // TODO
                 break;
         }
     }
