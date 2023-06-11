@@ -1,3 +1,14 @@
+// Control
+function forever(body) {
+    GameData.listeners.forever.push(body);
+};
+
+function repeat(times, body) {
+    for(let i = 0; i < times; i++) {
+        body();
+    }
+};
+
 // Sensing
 var mouseX = 0;
 var mouseY = 0;

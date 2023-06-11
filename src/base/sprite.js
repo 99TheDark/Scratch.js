@@ -26,9 +26,6 @@ class Sprite {
                 break;
         }
     }
-    forever(body) {
-        GameData.listeners.forever.push(body);
-    }
 
     // Motion
     move(steps) {

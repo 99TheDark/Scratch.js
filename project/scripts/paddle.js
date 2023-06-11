@@ -6,7 +6,7 @@ export var paddle = new Sprite({
 });
 
 paddle.on("flag", function() {
-    this.forever(() => {
+    forever(() => {
         this.setX(mouseX);
     });
 });

@@ -9,7 +9,7 @@ var ball = new Sprite({
 
 ball.on("flag", function() {
     this.pointInDirection(pickRandom(-70, 70));
-    this.forever(() => {
+    forever(() => {
         this.move(4);
         this.ifOnEdgeBounce();
         if(this.touching(paddle)) {
