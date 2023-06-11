@@ -78,6 +78,9 @@ class Sprite {
     touching(sprite) {
         return GameData.rectRect(this.__getScaledSize(), sprite.__getScaledSize());
     }
+    distanceTo(sprite) {
+        return sqrt((this.x - sprite.x) ** 2 + (this.y - sprite.y) ** 2);
+    }
 
     get x() {
         return this.#data.x;

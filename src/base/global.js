@@ -8,6 +8,10 @@ addEventListener("mousemove", e => {
     mouseY = (my / rect.height - 0.5) * GameData.height;
 });
 
+var mouseDown = false;
+addEventListener("mousedown", () => mouseDown = true);
+addEventListener("mouseup", () => mouseDown = false);
+
 // Operators
 function pickRandom(min, max) {
     const mag = Math.abs(max - min);
