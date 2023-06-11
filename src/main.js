@@ -36,6 +36,7 @@ var GameData = {
             this.run();
         }
     },
+
     run: function() {
         if(!this.stopped) {
             const ctx = this.context;
@@ -46,9 +47,6 @@ var GameData = {
 
             requestAnimationFrame(() => this.run.call(this));
         }
-    },
-    stop: function() {
-        this.stopped = true;
     },
     angle: deg => deg * Math.PI / 180,
     rectRect: (rect1, rect2) => {

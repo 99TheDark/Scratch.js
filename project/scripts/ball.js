@@ -13,7 +13,7 @@ ball.flagClicked(function() {
         this.move(4);
         if(this.y < -152) {
             broadcast("Game Over");
-            this.stop("all");
+            this.stopAll();
         }
         this.ifOnEdgeBounce();
         if(this.touching(paddle) && this.y > -105) {

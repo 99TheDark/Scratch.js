@@ -31,21 +31,8 @@ class Sprite {
     }
 
     // Control
-    stop(which) {
-        switch(which) {
-            default:
-                console.warn(`'${which}' is not a valid option; only 'all', 'this' and others' are available.`);
-                break;
-            case "all":
-                GameData.stop();
-                break;
-            case "this":
-                // TODO
-                break;
-            case "others":
-                // TODO
-                break;
-        }
+    stopAll() {
+        GameData.stoped = true;
     }
 
     // Motion
